@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Karla:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Movie Watchlist</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="title">
+        <h1>Find your film</h1>
+        <a href="watchlist.html" class="link">My Watchlist</a>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          name="search"
+          id="search-input"
+          placeholder="Search for a movie"
+        />
+        <button id="search-btn" class="search-btn">Search</button>
+      </div>
+    </header>
+
+    <main id="results-container" class="results-container">
+      <div class="explore">
+        <img src="./assets/movie.svg" />
+        <h4 class="grey">Start exploring</h4>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>
