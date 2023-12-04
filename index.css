@@ -68,10 +68,21 @@ header {
   align-items: center;
 }
 
-a {
+.link {
   text-decoration: none;
   color: #ffffff;
   font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.search-movies {
+  text-decoration: none;
+  color: #363636;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 700;
   line-height: 20px;
 }

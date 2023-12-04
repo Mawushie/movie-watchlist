@@ -3,6 +3,8 @@ const searchBtn = document.getElementById("search-btn");
 const searchText = document.getElementById("search-input");
 const resultsContainer = document.getElementById("results-container");
 const apikey = "73d7cd4";
+let moviesArrayLocal = [];
+let localStorageItems = [];
 
 //get movies from imdb by search
 const getMovies = () => {
@@ -31,22 +33,40 @@ const getMovieDetails = (imdbIDs) => {
       .then((data) => {
         // console.log(data);
         moviesArray.push(data);
-        moviesHtml(moviesArray);
+        // moviesHtml(moviesArray);
+        moviesArrayLocal = [...moviesArray];
+        moviesHtml(moviesArrayLocal);
+        // console.log(moviesArrayLocal);
       });
   });
 };
 
 //add movie to watchlist
-const addToWatchlist = (imdbID) => {
-  console.log("clicked", imdbID);
+const addToWatchlist = (id) => {
+  // console.log(id);
+  const targetMovie = moviesArrayLocal.filter((movie) => {
+    return movie.imdbID === id;
+  })[0];
+  // console.log(targetMovie);
+  localStorageItems.push(targetMovie);
+  // console.log(localStorageItems);
+  localStorage.setItem("watchlist", JSON.stringify(localStorageItems));
 };
 
-const moviesHtml = (moviesArray) => {
-  const html = moviesArray
+//event listener on document
+document.addEventListener("click", (e) => {
+  if (e.target.dataset.add) {
+    // console.log(e.target.dataset.add);
+    addToWatchlist(e.target.dataset.add);
+  }
+});
+
+const moviesHtml = (moviesArrayLocal) => {
+  const html = moviesArrayLocal
     .map((movie) => {
       const { Poster, Title, imdbRating, Runtime, Genre, Plot, imdbID } = movie;
       return `
-             <div class="search-result">
+             <div class="search-result" id = "${imdbID}" >
                       <div>
                           <img
                             src=${Poster}
@@ -71,7 +91,7 @@ const moviesHtml = (moviesArray) => {
                           }
                           <p class="search-genre">${Genre}</p>
                           <div class="d-flex watchlist" >
-                            <img src="./assets/add.svg" class="add" /> Watchlist
+                            <img src="./assets/add.svg" class="add" data-add="${imdbID}"/> Watchlist
                           </div>
                         </div>
                         <div>
